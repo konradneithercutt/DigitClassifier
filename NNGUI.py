@@ -14,7 +14,7 @@ class Classifier(object):
         root.columnconfigure(0, weight=1)
         root.rowconfigure(0, weight=1)
 
-        ttk.Button(mainframe, text="Show Digit").grid(column=1, row=1, sticky=(N))
+        ttk.Button(mainframe, text="Show Digit").grid(column=3, row=3, sticky=(N))
         root.mainloop()
 
     def show_digit():
