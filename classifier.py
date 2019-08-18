@@ -17,11 +17,16 @@ class Classifier(object):
         self.training_images, self.training_labels, self.cv_images, self.cv_labels = self.load_training_cv_data()
 
         self.mlp = self.initialize_mlp()
-        # self.show_digit(self.training_images[0], self.mlp.predict([self.training_images[0]]))
-
-
+        # self.show_digit(self.training_images[2], self.mlp.predict([self.training_images[2]]))
+        # predictions = self.mlp.predict(self.cv_images)
+        # for i in range(len(predictions)):
+        #     if self.cv_labels[i] != predictions[i]:
+        #         self.show_digit(self.cv_images[i], [self.cv_labels[i], predictions[i]])
+            #    print((self.cv_labels[i], predictions[i]))
+            # elif predictions[i] == 0:
+            #     print("farts")
         # Testing the accuracy of the classifier on CV set.
-        # predictions = self.mlp.predict(cv_images)
+        # predictions = self.mlp.predict(self.cv_images)
         # correct = 0
         # for i in range(len(predictions)):
         #     if(predictions[i] == self.cv_labels[i]):
@@ -35,7 +40,7 @@ class Classifier(object):
             mlp = self.load_mlp()
         else:
             mlp = MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(784), max_iter=100, activation='logistic', random_state=1)
-            mlp.fit(training_images[:40000], training_labels[:40000])
+            mlp.fit(self.training_images[:40000], self.training_labels[:40000])
             if self.save_new:
                 self.save_mlp(mlp)
         return mlp
@@ -104,7 +109,7 @@ class Classifier(object):
         if rand_index < 40000:
             image_data = self.training_images[rand_index]
             gold_label = self.training_labels[rand_index]
-            predicted_label = self.mlp.predict(image_data)
+            predicted_label = self.mlp.predict([image_data])
 
             image_data_array = []
             for i in range(0, 28):
@@ -119,6 +124,9 @@ class Classifier(object):
     # Expects data to be 28x28 Array
     def show_digit(self, image_data, label):
         image_data_array = []
+        # [0 1 2 3 4 5 6 7 8]
+        # [0 1 2]
+        # image_data_array = [[0 1 2], [3 4 5], [6 7 8]]
         for i in range(0, 28):
             image_data_array.append(image_data[i*28:(i+1)*28])
         plt.imshow(image_data_array, cmap=plt.get_cmap('gray'))
