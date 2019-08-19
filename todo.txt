@@ -1,0 +1,42 @@
+1. Random digits interface
+    - Add functionality to the digits_gui.py GUI to actually show the image of a random digit
+      by embedding a matplotlib plot in a tkinter window
+    - Add an option to only show incorrect digits in the window?
+    - Enable classifier.get_random_digit() to return an image from the CV set
+2. Paint interface
+    - Create a GUI that allows the user to draw a digit 0-9 and receive the mlp's
+      prediction on their drawing.
+3. Science: Attempting to improve accuracy
+    - Apply tests for discovering the algorithms weaknesses. Create a histogram
+      of which digits it gets wrong most often.
+    - Plot the accuracy of the algorithm on the training and CV sets as a function
+      of the number of training examples provided to it to determine if the problem
+      is one of bias or variance.
+    - Determine the best hyperparameters for accurate performance.
+    - Determine final performance on the test set. For integrity (to prevent
+      overfitting), this step has to be done AFTER the hyperparameters have been
+      tuned on the cross validation set.
+4. Documentation, organization
+    - The program so far is lacking in comments. It should be my job to get it
+      all caught up. - Steve
+    - Decide on a commenting style going forward, and the author of a given
+      piece of code will be in charge of keeping their work clean. Use whitespace
+      and use it uniformly. Every class and function needs a comment describing
+      its input, output, and expectations for the state of the data it receives.
+      All code whose function is not obvious should have a one-line comment
+      to help the reader understand it.
+    - Create uniformity in the naming of variables across files (for example,
+      known labels are called "label" in some places and "gold label" in other
+      places). classifier.show_digit() calls for a "label," but just displays
+      as a string whatever is passed. Also, any class attribute (self.variable)
+      should not have its name used a second time in a different scope.
+    - Delete all the commented-out code that is now obsolete.
+5. Performance (speed of classifier.py)
+    - Booting is slow, even when loading an already-trained classifier. I think
+      pickle was the wrong choice. Find a new, faster way to make the data
+      persistent (meaning able to be saved and reloaded).
+    - If changing the serialization and save/load of the data leaves the program
+      too slow, find more ways to improve performance on the classifier.
+6. DIY NN
+    - Implement our own feed forward neural network to classify the handwritten
+      digits
