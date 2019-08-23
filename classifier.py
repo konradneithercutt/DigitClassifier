@@ -1,3 +1,12 @@
+# AUTHOR: Konrad, among others
+
+
+
+
+
+
+
+
 import random
 import gzip
 import io
