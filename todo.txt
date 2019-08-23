@@ -38,5 +38,5 @@
     - If changing the serialization and save/load of the data leaves the program
       too slow, find more ways to improve performance on the classifier.
 6. DIY NN
-    - Implement our own feed forward neural network to classify the handwritten
-      digits
+    - Implement our own feed forward neural network learning by backpropagation
+      to classify the handwritten digits

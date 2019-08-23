@@ -39,6 +39,7 @@ class Classifier(object):
         if self.load_old:
             mlp = self.load_mlp()
         else:
+
             mlp = MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(784), max_iter=100, activation='logistic', random_state=1)
             mlp.fit(self.training_images[:40000], self.training_labels[:40000])
             if self.save_new:
