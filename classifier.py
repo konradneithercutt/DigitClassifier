@@ -48,6 +48,7 @@ class Classifier(object):
         if self.load_old:
             mlp = self.load_mlp()
         else:
+
             mlp = MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(784), max_iter=100, activation='logistic', random_state=1)
             mlp.fit(self.training_images[:40000], self.training_labels[:40000])
             if self.save_new:
@@ -62,10 +63,10 @@ class Classifier(object):
         all_labels = []
         # A File containing the data for the training images
         # Here we open it to read bytes mode and convert it to a bytes_stream :
-        train_images_file = gzip.open("E:\\Users\\Steven Marmorstein\\PyWorkspace\\MNIST\\train-images-idx3-ubyte.gz", "rb")
+        train_images_file = gzip.open("./train-images-idx3-ubyte.gz", "rb")
         bytes_stream_img_data = io.BytesIO(train_images_file.read())
         train_images_file.close()
-        train_labels_file = gzip.open("E:\\Users\\Steven Marmorstein\\PyWorkspace\\MNIST\\train-labels-idx1-ubyte.gz", "rb")
+        train_labels_file = gzip.open("./train-labels-idx1-ubyte.gz", "rb")
         bytes_stream_labels_data = io.BytesIO(train_labels_file.read())
         train_labels_file.close()
 
@@ -100,12 +101,12 @@ class Classifier(object):
         return (training_images, training_labels, cv_images, cv_labels)
 
     def save_mlp(self, mlp):
-        file = open("saved_mlp.pickle", "wb")
+        file = open("./saved_mlp.pickle", "wb")
         pickle.dump(mlp, file)
         file.close()
 
     def load_mlp(self):
-        file = open("saved_mlp.pickle", "rb")
+        file = open("./saved_mlp.pickle", "rb")
         mlp = pickle.load(file, fix_imports=True, encoding="ASCII", errors="strict")
         file.close()
         return mlp

@@ -24,10 +24,10 @@ class GUI(object):
         self.gold_display = StringVar()
         self.predicted_display = StringVar()
 
-        ttk.Label(mainframe, textvariable=self.gold_display).grid(column=0, row=1, sticky=(S, W))
-        ttk.Label(mainframe, textvariable=self.predicted_display).grid(column=0, row=2, sticky=(N, E))
+        ttk.Label(mainframe, textvariable=self.gold_display).grid(column=1, row=3, sticky=(N, W))
+        ttk.Label(mainframe, textvariable=self.predicted_display).grid(column=1, row=2, sticky=(N, W))
 
-        ttk.Button(mainframe, text="Show Digit", command=self.show_random_digit).grid(column=3, row=3, sticky=(N))
+        ttk.Button(mainframe, text="Show Digit", command=self.show_random_digit).grid(column=0, row=1, sticky=(N))
         root.mainloop()
     # def calculate(self, *args):
     #     try:
@@ -42,7 +42,7 @@ class GUI(object):
         image_data, gold_label, predicted_label = self.classifier.get_random_digit()
 
         self.gold_display.set(gold_label)
-        self.predicted_display.set(predicted_label)
+        self.predicted_display.set(predicted_label[0])
         return
         # ttk.Label(mainframe, textvariable=self.meters).grid(column=2, row=2, sticky=(W, E))
         # ttk.Button(mainframe, text="Calculate", command=self.calculate).grid(column=3, row=3, sticky=W)
